@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CollabSpace - Find people. Share goals. Build together.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- TOP BAR: logo, navigation, demo user switcher (NOT real login) -->
+  <header class="top">
+    <a class="logo" href="#/home">Collab<span>Space</span></a>
+    <nav>
+      <a data-p="home" href="#/home">Home</a>
+      <a data-p="projects" href="#/projects">Collaborate</a>
+      <a data-p="learn" href="#/learn">Learn &amp; Mentor</a>
+      <a data-p="community" href="#/community">Communities</a>
+      <a data-p="profile" href="#/profile">My Profile</a>
+      <a data-p="activity" href="#/activity">Activity <b id="bell"></b></a>
+    </nav>
+    <label class="demo">Demo user <select id="who"></select></label>
+  </header>
+
+  <!-- MAIN AREA: app.js draws every page in here -->
+  <main id="view"></main>
+
+  <footer>
+    <span>CollabSpace is a browser-only prototype. Data is saved in this browser only (localStorage) and is not shared between laptops.</span>
+    <button class="btn sm" onclick="resetData()">Reset demo data</button>
+  </footer>
+
+  <!-- Popup form and small message -->
+  <div id="modal"><div class="box" id="mbody"></div></div>
+  <div id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
