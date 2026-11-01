@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- ================= HEAD: page title and CSS file ================= -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CollabSpace - Find people. Share goals. Build together.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Soft glowing background shapes (animated in style.css) -->
+  <div class="glow glow-pink"></div>
+  <div class="glow glow-blue"></div>
+
+  <!-- ================= HEADER + NAVBAR ================= -->
+  <header>
+    <div class="logo">Collab<span>Space</span></div>
+
+    <nav>
+      <button id="nav-home" onclick="showPage('home')">Home</button>
+      <button id="nav-projects" onclick="showPage('projects')">Collaborate</button>
+      <button id="nav-learn" onclick="showPage('learn')">Learn &amp; Mentor</button>
+      <button id="nav-community" onclick="showPage('community')">Communities</button>
+      <button id="nav-profile" onclick="showPage('profile')">Profile</button>
+      <button id="nav-activity" onclick="showPage('activity')">Activity <b id="unreadCount"></b></button>
+    </nav>
+
+    <!-- Demo user switcher (this is NOT a real login) -->
+    <label class="user-switch">Demo user
+      <select id="userSelect" onchange="switchUser(this.value)"></select>
+    </label>
+  </header>
+
+  <!-- ================= MAIN CONTENT: JavaScript fills this box ================= -->
+  <main id="content"></main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <span>Browser-only prototype: data is saved in this browser (localStorage) and is not shared between computers.</span>
+    <button class="small-btn" onclick="resetDemoData()">Reset demo data</button>
+  </footer>
+
+  <!-- ================= POPUP FORM and MESSAGE ================= -->
+  <div id="popup"><div id="popupBox"></div></div>
+  <div id="message"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+/* =====================================================
+   CollabSpace - style.css
+   THEME: dreamy night sky with soft pink and blue glow
+   SECTIONS: 1 Colours | 2 Page and background | 3 Header and navbar
+             4 Main content and cards | 5 Buttons and forms | 6 Popup and message
+             7 Animations | 8 Mobile
+   ===================================================== */
+
+/* ---------- 1. COLOURS (change the theme here) ---------- */
+:root {
+  --dark: #140d2e;
+  --glass: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.15);
+  --text: #f4f0ff;
+  --muted: #b3a9d6;
+  --pink: #ff8fc7;
+  --blue: #6fe3ff;
+  --purple: #b69cff;
+}
+
+/* ---------- 2. PAGE AND BACKGROUND ---------- */
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: linear-gradient(160deg, #1d1045, #0f1c3d);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+/* Two big blurred colour blobs that float slowly behind everything */
+.glow { position: fixed; width: 420px; height: 420px; border-radius: 50%; filter: blur(110px); opacity: 0.35; z-index: -1; }
+.glow-pink { background: var(--pink); top: -120px; left: -100px; animation: float 12s ease-in-out infinite; }
+.glow-blue { background: var(--blue); bottom: -150px; right: -100px; animation: float 15s ease-in-out infinite reverse; }
+
+/* ---------- 3. HEADER AND NAVBAR ---------- */
+header {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 12px 28px;
+  background: rgba(20, 13, 46, 0.8);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.logo { font-size: 22px; font-weight: bold; }
+.logo span { color: var(--pink); }
+
+nav { display: flex; gap: 4px; flex: 1; flex-wrap: wrap; }
+nav button {
+  background: none; border: none; color: var(--muted);
+  padding: 7px 14px; border-radius: 20px; font-size: 15px; cursor: pointer;
+  transition: 0.25s;
+}
+nav button:hover { color: var(--text); background: var(--glass); }
+nav button.active { color: #1b1038; background: linear-gradient(90deg, var(--pink), var(--purple)); }
+#unreadCount:not(:empty) { background: var(--blue); color: #1b1038; border-radius: 10px; padding: 0 7px; font-size: 12px; }
+
+.user-switch { font-size: 12px; color: var(--muted); }
+.user-switch select { width: auto; margin-left: 6px; }
+
+/* ---------- 4. MAIN CONTENT AND CARDS ---------- */
+main { max-width: 1050px; margin: 0 auto; padding: 32px 20px; min-height: 70vh; }
+
+h1 { font-size: 32px; margin-bottom: 6px; }
+h2 { font-size: 20px; margin: 28px 0 10px; color: var(--blue); }
+h3 { font-size: 17px; margin: 8px 0 4px; }
+
+/* Big welcome area on the home page */
+.hero { padding: 36px 0 10px; }
+.hero h1 {
+  font-size: 44px; max-width: 650px;
+  background: linear-gradient(90deg, var(--pink), var(--purple), var(--blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin: 14px 0; }
+
+/* Glass card */
+.card {
+  background: var(--glass); border: 1px solid var(--border); border-radius: 16px;
+  padding: 18px; margin-bottom: 12px; backdrop-filter: blur(8px);
+  transition: 0.3s;
+}
+.card:hover { transform: translateY(-4px); border-color: var(--pink); box-shadow: 0 10px 30px rgba(255, 143, 199, 0.18); }
+.pinned { border-color: var(--blue); }
+
+/* Small coloured labels */
+.tag, .status {
+  display: inline-block; margin: 4px 6px 0 0; padding: 1px 11px;
+  border-radius: 20px; font-size: 12px; border: 1px solid var(--purple); color: var(--purple);
+}
+.status.open, .status.accepted, .status.completed { color: var(--blue); border-color: var(--blue); }
+.status.declined, .status.withdrawn, .status.archived { color: var(--pink); border-color: var(--pink); }
+
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+.line { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 10px; }
+
+/* Progress bar and poll bar */
+.bar { height: 8px; background: var(--border); border-radius: 4px; margin-top: 6px; overflow: hidden; }
+.bar div { height: 100%; background: linear-gradient(90deg, var(--pink), var(--blue)); transition: width 0.5s; }
+
+.empty { padding: 28px; text-align: center; color: var(--muted); border: 2px dashed var(--border); border-radius: 16px; }
+
+/* Tab buttons (Learn page) */
+.tabs { display: flex; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+.tab { background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 16px; border-radius: 20px; cursor: pointer; transition: 0.25s; }
+.tab:hover, .tab.active { color: var(--pink); border-color: var(--pink); }
+
+footer { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; align-items: center; padding: 20px 28px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+
+/* ---------- 5. BUTTONS AND FORMS ---------- */
+button.main-btn, .small-btn {
+  font: inherit; cursor: pointer; border-radius: 20px; transition: 0.25s;
+}
+button.main-btn {
+  background: linear-gradient(90deg, var(--pink), var(--purple)); color: #1b1038;
+  border: none; padding: 9px 20px; font-weight: bold;
+}
+button.main-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 143, 199, 0.45); }
+
+.small-btn { background: none; color: var(--text); border: 1px solid var(--border); padding: 3px 13px; font-size: 13px; margin: 8px 6px 0 0; }
+.small-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+input, select, textarea {
+  width: 100%; margin-top: 4px; padding: 9px 12px; font: inherit;
+  background: rgba(0, 0, 0, 0.3); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--pink); }
+select option { background: var(--dark); }
+label { display: block; margin-top: 12px; font-size: 13px; color: var(--muted); }
+.filters { display: flex; gap: 10px; flex-wrap: wrap; }
+.filters input, .filters select { margin-top: 0; flex: 1; min-width: 160px; }
+.error { color: var(--pink); font-size: 13px; min-height: 18px; margin-top: 10px; }
+
+/* ---------- 6. POPUP AND MESSAGE ---------- */
+#popup { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(10, 5, 30, 0.75); z-index: 9; }
+#popup.show { display: flex; animation: fadeIn 0.25s; }
+#popupBox {
+  width: 100%; max-width: 470px; max-height: 90vh; overflow: auto; padding: 24px;
+  background: #1f1546; border: 1px solid var(--border); border-radius: 18px;
+  animation: pop 0.3s;
+}
+
+#message {
+  position: fixed; bottom: 26px; left: 50%; transform: translate(-50%, 30px);
+  background: linear-gradient(90deg, var(--pink), var(--blue)); color: #1b1038;
+  padding: 10px 22px; border-radius: 20px; font-weight: bold;
+  opacity: 0; pointer-events: none; transition: 0.35s; z-index: 10;
+}
+#message.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- 7. ANIMATIONS ---------- */
+.fade { animation: fadeUp 0.5s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pop { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+@keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(60px, 40px); } }
+
+/* ---------- 8. MOBILE ---------- */
+@media (max-width: 640px) {
+  header { padding: 10px 14px; gap: 10px; }
+  main { padding: 20px 14px; }
+  .hero h1 { font-size: 30px; }
+}
